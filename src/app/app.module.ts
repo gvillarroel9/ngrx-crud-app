@@ -6,13 +6,13 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
-import { FruitReducer } from './ngrx/reducers/fruit.reducer';
-import { FruitEffects } from './ngrx/effects/fruit.effect';
+import { appEffects, REDUCER_TOKEN } from "./store";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FruitComponent } from './fruit/fruit.component';
 import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -22,12 +22,13 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     HttpClientModule,
+    CommonModule,
     AppRoutingModule,
-    StoreModule.forRoot([FruitReducer]),
+    StoreModule.forRoot(REDUCER_TOKEN),
+    EffectsModule.forRoot([...appEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 50 // number of states to retain
     }),
-    EffectsModule.forRoot([FruitEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent]

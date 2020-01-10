@@ -1,9 +1,7 @@
-import { Component } from '@angular/core';
-import { Store, select } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import * as actions from './ngrx/actions/fruit.actions';
-import * as fromFruit from './ngrx/reducers/fruit.reducer';
-
+import { Component, OnInit } from "@angular/core";
+import { Store, select } from "@ngrx/store";
+import { selectAllEntities } from "./ngrx/reducers/selector";
+import { fromEntityActions } from "./ngrx/actions/entity.actions";
 
 @Component({
   selector: 'app-root',
@@ -11,13 +9,14 @@ import * as fromFruit from './ngrx/reducers/fruit.reducer';
   styleUrls: ['./app.component.sass']
 })
 
-export class AppComponent {
-  title = 'ngrx-crud';
-  fruits = this.store.pipe(select( fromFruit.selectAllFruits));
-
-  constructor(private store: Store<any>) { }
-
-  ngOnInit() {
-  }
-
+export class AppComponent implements OnInit {
+    title = "Entities Page";
+  
+    entities$ = this.store.pipe(select(selectAllEntities));
+  
+    constructor(private store: Store<any>) {}
+  
+    ngOnInit(): void {
+      this.store.dispatch(fromEntityActions.loadEntities());
+    }
 }
