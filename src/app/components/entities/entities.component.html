@@ -1,0 +1,7 @@
+
+
+<div *ngIf="entities$" >
+  <p *ngFor="let entity of (entities$ | async)">
+    Entity Id: {{entity.id}} | Name: {{entity.name}} | Code: {{entity.code}}
+  </p>
+</div>

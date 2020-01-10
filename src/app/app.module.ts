@@ -10,14 +10,16 @@ import { appEffects, REDUCER_TOKEN } from "./store";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FruitComponent } from './fruit/fruit.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { EntitiesComponent } from './components/entities/entities.component';
+import { EntityComponent } from './components/entity/entity.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FruitComponent
+    EntitiesComponent,
+    EntityComponent
   ],
   imports: [
     BrowserModule,
