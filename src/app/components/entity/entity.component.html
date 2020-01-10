@@ -1,1 +1,21 @@
-<p>entity works!</p>
+<h1>Entity page</h1>
+<form [formGroup]="entityForm">
+  <div>
+    <label for="id">ID:</label>&nbsp;
+    <input [readonly]="isEdit" id="id" formControlName="id" />
+  </div>
+  <br />
+  <div>
+    <label for="name">Name:</label>&nbsp;
+    <input id="name" formControlName="name" />
+  </div>
+  <br />
+  <div>
+    <label for="code">Code:</label>&nbsp;
+    <input id="code" formControlName="code" />
+  </div>
+  <br />
+  <div>
+    <button (click)="save()">Save</button>
+  </div>
+</form>

@@ -26,6 +26,12 @@ export const selectEntityCount = createSelector(
   selectTotal
 );
 
+// select the Entity by Id
+export const selectEntity = createSelector(
+  getEntityState,
+  (state: State, prop: { id: number }) => state.entities[prop.id]
+);
+
 // select entity loaded flag
 export const selectEntityLoaded = createSelector(
   getEntityState,

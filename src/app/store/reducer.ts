@@ -40,18 +40,42 @@ const _reducer = createReducer(
       error
     };
   }),
-  on(fromEntityActions.loadEntitySuccess, (state, { id, item }) => {
-    return adapter.addOne(item, state);
+  on(fromEntityActions.loadEntitySuccess, (state, { entity }) => {
+    return adapter.addOne(entity, state);
   }),
   on(fromEntityActions.loadEntityFail, (state, { error }) => {
     return {
       ...state,
       error
     };
+  }),
+  on(fromEntityActions.updateEntity, (state, { update }) => {
+    return adapter.updateOne({ id: update.id, changes: update }, state);
+  }),
+  on(fromEntityActions.updateEntityFail, (state, { error }) => {
+    return {
+      ...state,
+      error
+    };
+  }),
+  on(fromEntityActions.createEntity, (state, action) => {
+    return adapter.addOne(action.new, state);
+  }),
+  on(fromEntityActions.createEntityFail, (state, { error }) => {
+    return {
+      ...state,
+      error
+    };
+  }),
+  on(fromEntityActions.deleteEntity, (state, action) => {
+    return adapter.removeOne(action.id, state);
+  }),
+  on(fromEntityActions.deleteEntityFail, (state, { error }) => {
+    return {
+      ...state,
+      error
+    };
   })
-  // on(UserActions.updateUsers, (state, { users }) => {
-  //   return adapter.updateMany(users, state);
-  // })
 );
 
 export function reducer(state: State | undefined, action: Action) {

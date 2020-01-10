@@ -14,6 +14,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { EntitiesComponent } from './components/entities/entities.component';
 import { EntityComponent } from './components/entity/entity.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  entityResolvers
+} from "./app-routing.module";
 
 @NgModule({
   declarations: [
@@ -25,6 +29,8 @@ import { EntityComponent } from './components/entity/entity.component';
     BrowserModule,
     HttpClientModule,
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     StoreModule.forRoot(REDUCER_TOKEN),
     EffectsModule.forRoot([...appEffects]),
@@ -32,7 +38,7 @@ import { EntityComponent } from './components/entity/entity.component';
       maxAge: 50 // number of states to retain
     }),
   ],
-  providers: [],
+  providers: [entityResolvers],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

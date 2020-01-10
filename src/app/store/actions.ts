@@ -11,7 +11,13 @@ export enum EntityActionTypes {
   LoadEntityFail = "[Entity] Load Entity Fail",
   UpdateEntity = "[Entity] Update Entity",
   UpdateEntitySuccess = "[Entity] Update Entity Success",
-  UpdateEntityFail = "[Entity] Update Entity Fail"
+  UpdateEntityFail = "[Entity] Update Entity Fail",
+  CreateEntity = "[Entity] Create Entity",
+  CreateEntitySuccess = "[Entity] Create Entity Success",
+  CreateEntityFail = "[Entity] Create Entity Fail",
+  DeleteEntity = "[Entity] Delete Entity",
+  DeleteEntitySuccess = "[Entity] Delete Entity Success",
+  DeleteEntityFail = "[Entity] Delete Entity Fail"
 }
 
 export const loadEntities = createAction(EntityActionTypes.LoadEntities);
@@ -28,12 +34,12 @@ export const loadEntitiesFail = createAction(
 
 export const loadEntity = createAction(
   EntityActionTypes.LoadEntity,
-  props<{ id: string | number }>()
+  props<{ id: number }>()
 );
 
 export const loadEntitySuccess = createAction(
   EntityActionTypes.LoadEntitySuccess,
-  props<{ id: string | number; item: Entity }>()
+  props<{ entity: Entity }>()
 );
 
 export const loadEntityFail = createAction(
@@ -43,22 +49,46 @@ export const loadEntityFail = createAction(
 
 export const updateEntity = createAction(
   EntityActionTypes.UpdateEntity,
-  props<{ id: number | string; originalItem: any; updatedItem: any }>()
+  props<{ update: Entity }>()
 );
 
 export const updateEntitySuccess = createAction(
   EntityActionTypes.UpdateEntitySuccess,
-  props<{ id: number | string; originalItem: any; updatedItem: any }>()
+  props<{ entity: Entity }>()
 );
 
 export const updateEntityFail = createAction(
   EntityActionTypes.UpdateEntityFail,
-  props<{
-    id: number | string;
-    originalItem: any;
-    updatedItem: any;
-    error: Error | any;
-  }>()
+  props<{ error: Error | any }>()
+);
+
+export const createEntity = createAction(
+  EntityActionTypes.CreateEntity,
+  props<{ new: Entity }>()
+);
+
+export const createEntitySuccess = createAction(
+  EntityActionTypes.CreateEntitySuccess,
+  props<{ entity: Entity }>()
+);
+
+export const createEntityFail = createAction(
+  EntityActionTypes.CreateEntityFail,
+  props<{ error: Error | any }>()
+);
+
+export const deleteEntity = createAction(
+  EntityActionTypes.DeleteEntity,
+  props<{ id: number }>()
+);
+
+export const deleteEntitySuccess = createAction(
+  EntityActionTypes.DeleteEntitySuccess
+);
+
+export const deleteEntityFail = createAction(
+  EntityActionTypes.DeleteEntityFail,
+  props<{ error: Error | any }>()
 );
 
 export const fromEntityActions = {
@@ -67,5 +97,14 @@ export const fromEntityActions = {
   loadEntitiesSuccess,
   loadEntity,
   loadEntityFail,
-  loadEntitySuccess
+  loadEntitySuccess,
+  updateEntity,
+  updateEntitySuccess,
+  updateEntityFail,
+  createEntity,
+  createEntitySuccess,
+  createEntityFail,
+  deleteEntity,
+  deleteEntitySuccess,
+  deleteEntityFail
 };
