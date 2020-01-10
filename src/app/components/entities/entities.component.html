@@ -1,0 +1,9 @@
+
+
+<div *ngFor="let entity of (entities$ | async)">
+  <p>
+    Entity Id: {{entity.id}} | Name: {{entity.name}} | Code: {{entity.code}} |
+    <a href="javascript:void(0)" (click)=edit(entity.id)>Edit</a> |
+    <a href="javascript:void(0)" (click)="delete(entity.id)">Delete</a>
+  </p>
+</div>
